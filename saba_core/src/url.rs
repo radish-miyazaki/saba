@@ -64,10 +64,10 @@ impl Url {
         let url_parts: Vec<&str> = self
             .url
             .trim_start_matches("http://")
-            .splitn(2, "/")
+            .splitn(2, '/')
             .collect();
 
-        if let Some(index) = url_parts[0].find(":") {
+        if let Some(index) = url_parts[0].find(':') {
             // ポート番号が指定されている場合は、その手前までをホスト名として返す
             url_parts[0][..index].to_string()
         } else {
@@ -80,10 +80,10 @@ impl Url {
         let url_parts: Vec<&str> = self
             .url
             .trim_start_matches("http://")
-            .splitn(2, "/")
+            .splitn(2, '/')
             .collect();
 
-        if let Some(index) = url_parts[0].find(":") {
+        if let Some(index) = url_parts[0].find(':') {
             url_parts[0][index + 1..].to_string()
         } else {
             // ポート番号が指定されていない場合はデフォルトの80番ポートを返す
@@ -95,7 +95,7 @@ impl Url {
         let url_paths: Vec<&str> = self
             .url
             .trim_start_matches("http://")
-            .splitn(2, "/")
+            .splitn(2, '/')
             .collect();
 
         if url_paths.len() < 2 {
@@ -103,7 +103,7 @@ impl Url {
             return "".to_string();
         }
 
-        let path_and_searchpart: Vec<&str> = url_paths[1].splitn(2, "?").collect();
+        let path_and_searchpart: Vec<&str> = url_paths[1].splitn(2, '?').collect();
 
         path_and_searchpart[0].to_string()
     }
@@ -112,14 +112,14 @@ impl Url {
         let url_paths: Vec<&str> = self
             .url
             .trim_start_matches("http://")
-            .splitn(2, "/")
+            .splitn(2, '/')
             .collect();
 
         if url_paths.len() < 2 {
             return "".to_string();
         }
 
-        let path_and_searchpart: Vec<&str> = url_paths[1].splitn(2, "?").collect();
+        let path_and_searchpart: Vec<&str> = url_paths[1].splitn(2, '?').collect();
 
         if path_and_searchpart.len() < 2 {
             // パスが存在しないケース
